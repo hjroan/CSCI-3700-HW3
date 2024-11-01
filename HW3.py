@@ -37,7 +37,9 @@ def(uniqueFruits)
 
   try:
     cursor = connect.cursor()  
-    cursor.execute(
+    cursor.execute(SELECT 'Basket A' AS basket, fruit FROM basket_a WHERE fruit NOT IN (SELECT fruit FROM basket_b) UNION ALL
+    SELECT 'Basket B AS basket, fruit FROM basket_b WHERE fruit NOT IN (SELECT fruit FROM basket_a))
+                  
     
     connect.commit()
     connect.close()
